@@ -4,15 +4,14 @@
 <head>
     <meta charset="utf-8">
     <title>DAFISY</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineIcons.css">
 </head>
 
 <body>
-    <!-- Navbar Start -->
-    <header>
+<header>
         <div class="Ses">
-        <button type="submit" class="inc"> <a href="SantiGr.php">Acceder</a></button><br>
+        <button type="submit" class="inc"> <a href="CRUD.php">usuarios</a></button><br>
         </div>
         <table class="Ti">
                 <th>
@@ -32,41 +31,49 @@
     </table>
     
 </header>
-<main>
 
-<?php
+    <main>
+        <!-- Formulario para insertar datos en la tabla clientes -->
+        <h2>Insertar datos en la tabla clientes y ventas</h2>
 
-include_once "htmlcon.php";
+        <table class="Formulario">
+        <form action="insertar.php" method="post">
+            <tr>
+                <td>
+            <label for="ID_cliente">ID cliente</label>
+            <input type="number" name="ID_cliente" required>
+            
+            <label for="nombre_cliente">cliente:</label>
+            <input type="text" name="nombre_cliente" required>
+        </td>
+        <td>
+            <label for="telefono_cliente">Teléfono</label>
+            <input type="tel" name="telefono_cliente" required>
 
-$Nombre = $_POST["Nombre_producto"];
-$Ctec= $_POST["C_tecnicas"];
-$No_id = $_POST["ID_producto"];
-$marca = $_POST["marca"];
-$Cat = $_POST["categoria"];
-$Precio = $_POST["Precio"];
-$estado = $_POST["estado_P"];
-$stock = $_POST["stock"];
+            <label for="codigo_compra">compra:</label>
+            <input type="number" name="codigo_compra" required>
+        </td>
+        <td>
+            
+            <label for="valor_compra">Valor de compra:</label>
+            <input type="number" name="valor_compra" required>
+            
+            <label for="fecha_compra">Fecha de compra:</label>
+            <input type="date" name="fecha_compra" required>
+        </td>
+        <tr>
+        <td>
+            <label for="ID_producto">ID producto:</label>
+            <input type="number" name="ID_producto" required>
+        </td><tr>    
+    <td colspan="4"><button class="Sti" type="submit" name="agregar">Agregar</button>
+    </tr>       
+              
+        </form>
+    </table>
+    </main>
 
-
-$sql = "INSERT INTO producto (Nombre_producto,C_tecnicas,ID_producto,marca,categoria,Precio,estado_P,stock) VALUES ('$Nombre', '$Ctec', '$No_id', '$marca', '$Cat', '$Precio', '$estado','$stock')";
-
-if ($conn->query($sql)) {
-    echo "Registro exitoso";
-} else {
-    echo "Error fatal: " . $conn->error;
-}
-
-?>
-
-
-<br>
-
-
-
-</main>
-
-<footer>
-        
+    <footer>
         <h4 class="Con">Contactenos</h4>
         <p>Bogota, Colombia, Dafisy</p>
         <p>+57 3227048263</p>
@@ -93,9 +100,6 @@ if ($conn->query($sql)) {
                         </div>
                     </div>
     </footer>
-
-
-
-
 </body>
+
 </html>

@@ -22,12 +22,12 @@
                     <h1>DAFISY</h1>
                 </th>
                 <th>
-                <nav class="Mi">
-                    <a href="PagP.html" class="Bt">inicio</a>
-                    <a href="ventas.php" class="Bt">ventas</a>
-                    <a href="Inventario.php" class="Bt">inventario</a>
-                    <a href="#" class="Bt">Contactenos</a>
-                </nav>
+                    <nav class="Mi">
+                        <a href="PagP.html" class="Bt">Inicio</a>
+                        <a href="quienessomos.html" class="Bt">Quienes somos</a>
+                        <a href="servicios.html" class="Bt">servicios</a>
+                        <a href="#" class="Bt">Contactenos</a>
+                    </nav>
                 </th>
     </table>
     
@@ -38,17 +38,13 @@
 
 include_once "htmlcon.php";
 
-$Nombre = $_POST["Nombre_producto"];
-$Ctec= $_POST["C_tecnicas"];
-$No_id = $_POST["ID_producto"];
-$marca = $_POST["marca"];
-$Cat = $_POST["categoria"];
-$Precio = $_POST["Precio"];
-$estado = $_POST["estado_P"];
-$stock = $_POST["stock"];
+$codigoCompra = $_POST["codigo_Compra"];
+$valorCompra = $_POST["valor_Compra"];
+$fechaCompra = $_POST["fecha_Compra"];
+$idCliente = $_POST["ID_cliente"];
+$idProducto = $_POST["ID_producto"];
 
-
-$sql = "INSERT INTO producto (Nombre_producto,C_tecnicas,ID_producto,marca,categoria,Precio,estado_P,stock) VALUES ('$Nombre', '$Ctec', '$No_id', '$marca', '$Cat', '$Precio', '$estado','$stock')";
+$sql = "INSERT INTO ventas (codigo_compra, valor_compra, fecha_compra, ID_cliente, ID_producto) VALUES ('$codigoCompra', '$valorCompra', '$fechaCompra', '$idCliente', '$idProducto')";
 
 if ($conn->query($sql)) {
     echo "Registro exitoso";
@@ -57,7 +53,6 @@ if ($conn->query($sql)) {
 }
 
 ?>
-
 
 <br>
 

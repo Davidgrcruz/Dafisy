@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <th>
                 <nav class="Mi">
                     <a href="PagP.html" class="Bt">inicio</a>
-                    <a href="ventas" class="Bt">ventas</a>
+                    <a href="ventas.php" class="Bt">ventas</a>
                     <a href="Inventario.php" class="Bt">inventario</a>
                     <a href="#" class="Bt">Contactenos</a>
                 </nav>

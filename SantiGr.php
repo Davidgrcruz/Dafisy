@@ -9,10 +9,10 @@ function redirigirUsuario($cargo, $estado) {
         } elseif ($cargo === "Empleado") {
             header("Location:Inventario.php");
         } else {
-            header("Location: Error/error404.html");
+            header("Location: error 404.html");
         }
     } else {
-        header("Location: Error/error500.html");
+        header("Location: error 500.html");
     }
     exit();
 }

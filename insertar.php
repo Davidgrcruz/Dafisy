@@ -22,12 +22,12 @@
                     <h1>DAFISY</h1>
                 </th>
                 <th>
-                <nav class="Mi">
-                    <a href="PagP.html" class="Bt">inicio</a>
-                    <a href="ventas.php" class="Bt">ventas</a>
-                    <a href="Inventario.php" class="Bt">inventario</a>
-                    <a href="#" class="Bt">Contactenos</a>
-                </nav>
+                    <nav class="Mi">
+                        <a href="PagP.html" class="Bt">Inicio</a>
+                        <a href="quienessomos.html" class="Bt">Quienes somos</a>
+                        <a href="servicios.html" class="Bt">servicios</a>
+                        <a href="#" class="Bt">Contactenos</a>
+                    </nav>
                 </th>
     </table>
     
@@ -35,30 +35,30 @@
 <main>
 
 <?php
-
 include_once "htmlcon.php";
 
-$Nombre = $_POST["Nombre_producto"];
-$Ctec= $_POST["C_tecnicas"];
-$No_id = $_POST["ID_producto"];
-$marca = $_POST["marca"];
-$Cat = $_POST["categoria"];
-$Precio = $_POST["Precio"];
-$estado = $_POST["estado_P"];
-$stock = $_POST["stock"];
+if (isset($_POST['agregar'])) {
+    $ID_cliente = $_POST['ID_cliente'];
+    $nombre_cliente = $_POST['nombre_cliente'];
+    $telefono_cliente = $_POST['telefono_cliente'];
+    $codigo_compra = $_POST['codigo_compra'];
+    $valor_compra = $_POST['valor_compra'];
+    $fecha_compra = $_POST['fecha_compra'];
+    $ID_producto = $_POST['ID_producto'];
 
+    $sql_cliente = "INSERT INTO clientes (ID_cliente, nombre_cliente, telefono_cliente) 
+                    VALUES ('$ID_cliente', '$nombre_cliente', '$telefono_cliente')";
 
-$sql = "INSERT INTO producto (Nombre_producto,C_tecnicas,ID_producto,marca,categoria,Precio,estado_P,stock) VALUES ('$Nombre', '$Ctec', '$No_id', '$marca', '$Cat', '$Precio', '$estado','$stock')";
+    $sql_venta = "INSERT INTO ventas (codigo_compra, valor_compra, fecha_compra, ID_cliente, ID_producto) 
+                  VALUES ('$codigo_compra', '$valor_compra', '$fecha_compra', '$ID_cliente', '$ID_producto')";
 
-if ($conn->query($sql)) {
-    echo "Registro exitoso";
-} else {
-    echo "Error fatal: " . $conn->error;
+    if ($conn->query($sql_cliente) && $conn->query($sql_venta)) {
+        echo "Datos insertados correctamente en las tablas clientes y ventas.";
+    } else {
+        echo "Error al insertar datos en las tablas clientes y ventas: " . $conn->error;
+    }
 }
-
 ?>
-
-
 <br>
 
 
