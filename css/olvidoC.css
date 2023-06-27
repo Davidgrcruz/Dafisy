@@ -1,0 +1,22 @@
+body {
+  margin: 100px;
+  padding: 100px;
+  background-color: rgb(123, 209, 209);
+  background-size: cover;
+  font-family: sans-serif;
+  height: 100vh;
+}
+
+.login-box .Santi[type="submit"][type="submit"][type="submit"]:hover {
+  cursor: pointer;
+  background: #8707ff;
+  color: #000000;
+}
+
+.login-box .Santi {
+  position: relative;
+  left: 70px;
+  top: 20px;
+  width: 50%;
+  margin-bottom: 40px;
+}

@@ -1,0 +1,133 @@
+body {
+  background: linear-gradient(#000000,#2836bb,#11f1d4);
+  text-align: center;
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+.Ti{
+  font-size: 15px;
+  width: 90%;
+  padding: 40px;
+  text-align: right;  
+}
+
+header,footer{
+width: 86%;
+margin-left: 10%;
+padding: 1px;
+}
+
+
+
+main {
+width: 86%;
+margin-left: 10%;
+background-color: #b1aeae;
+padding: 1px;
+}
+
+
+.Formulario {
+  width: 400px;
+  margin:auto;
+}
+
+.Formulario label {
+  display: block;
+  text-align: center;
+  padding: 10px;
+}
+
+.Formulario input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #000000;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: rgba(8, 3, 3, 0.534);
+  font-size: 16px;
+}
+
+.Formulario button {
+  display: block;
+  margin: 20px auto;
+}
+
+
+.inc {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #ffffff8e;
+  color: #ffffff;
+  font-size: 20px;
+  border-radius: 100px;
+  width: 13%;
+  margin-left: 85%;
+}
+
+.Bt {
+  padding: 3px;
+}
+
+.inc:hover {
+  background-color: #ff0967;
+}
+
+
+
+.Mi {
+  margin-left: 15%;
+}
+
+
+.Ti {
+  font-size: 15px;
+}
+
+nav.Mi :hover{
+  color: #ff0967;
+  }
+  
+a {
+  color: #fdfdfd;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+h1{
+  color: #42defa;
+  font-size: 40px;
+  }
+
+  .Sti{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 20px;
+  border-radius: 100px;
+  width: 50%;
+  margin-left: 85%;
+  }
+
+  .Sti:hover {
+    background-color: #ff0967;
+  }
+
+  select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 150px;
+ }
+
+
+
+
