@@ -13,39 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $carg = $_POST["rol"];
     $est = $_POST["estado"];
 
-    $sql = "UPDATE SH SET ";
-
-    $updates = [];
-    if (!empty($Nombre)) {
-        $updates[] = "Nombre = '$Nombre'";
-    }
-    if (!empty($Apell)) {
-        $updates[] = "Apellido = '$Apell'";
-    }
-    if (!empty($Email)) {
-        $updates[] = "Email = '$Email'";
-    }
-    if (!empty($Direc)) {
-        $updates[] = "Dir = '$Direc'";
-    }
-    if (!empty($Pass)) {
-        $updates[] = "Pass = '$Pass'";
-    }
-    if (!empty($tel)) {
-        $updates[] = "Tel = '$tel'";
-    }
-    if (!empty($fec)) {
-        $updates[] = "Fec = '$fec'";
-    }
-    if (!empty($carg)) {
-      $updates[] = "rol = '$carg'";
-  }
-  if (!empty($est)) {
-    $updates[] = "estado = '$est'";
-}
-
-    $sql .= implode(", ", $updates);
-    $sql .= " WHERE ID = '$No_id'";
+    $sql = "CALL ActualizarUsuario('$No_id', '$Nombre', '$Apell', '$Email', '$Direc', '$Pass', '$tel', '$fec', '$carg', '$est')";
 
     if ($conn->query($sql)) {
         echo "Actualización exitosa";

@@ -37,28 +37,26 @@
 <?php
 include_once "htmlcon.php";
 
-if (isset($_POST['agregar'])) {
-    $ID_cliente = $_POST['ID_cliente'];
-    $nombre_cliente = $_POST['nombre_cliente'];
-    $telefono_cliente = $_POST['telefono_cliente'];
-    $codigo_compra = $_POST['codigo_compra'];
-    $valor_compra = $_POST['valor_compra'];
-    $fecha_compra = $_POST['fecha_compra'];
-    $ID_producto = $_POST['ID_producto'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $ID_cliente = $_POST["ID_cliente"];
+    $nombre_cliente = $_POST["nombre_cliente"];
+    $telefono_cliente = $_POST["telefono_cliente"];
+    $codigo_compra = $_POST["codigo_compra"];
+    $valor_compra = $_POST["valor_compra"];
+    $fecha_compra = $_POST["fecha_compra"];
+    $ID_producto = $_POST["ID_producto"];
 
-    $sql_cliente = "INSERT INTO clientes (ID_cliente, nombre_cliente, telefono_cliente) 
-                    VALUES ('$ID_cliente', '$nombre_cliente', '$telefono_cliente')";
+  
+    $sql = "CALL InsertarClienteYVenta($ID_cliente, '$nombre_cliente', '$telefono_cliente', $codigo_compra, $valor_compra, '$fecha_compra', $ID_producto)";
 
-    $sql_venta = "INSERT INTO ventas (codigo_compra, valor_compra, fecha_compra, ID_cliente, ID_producto) 
-                  VALUES ('$codigo_compra', '$valor_compra', '$fecha_compra', '$ID_cliente', '$ID_producto')";
-
-    if ($conn->query($sql_cliente) && $conn->query($sql_venta)) {
-        echo "Datos insertados correctamente en las tablas clientes y ventas.";
+    if ($conn->query($sql)) {
+        echo "Registro exitoso";
     } else {
-        echo "Error al insertar datos en las tablas clientes y ventas: " . $conn->error;
+        echo "Error fatal: " . $conn->error;
     }
 }
 ?>
+
 <br>
 
 
