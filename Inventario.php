@@ -86,9 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <header>
-        <div class="Ses">
-            <button type="submit" class="inc"> <a href="CRUD.php">usuarios</a></button><br>
-        </div>
+       
         <table class="Ti">
             <th>
                 <img src="img/Santi.png" class="avatar" style="width: 90px; height: 100px;">
@@ -99,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <th>
                 <nav class="Mi">
                     <a href="PagP.html" class="Bt">inicio</a>
-                    <a href="ventas.php" class="Bt">ventas</a>
+                    <a href="ventas.html" class="Bt">ventas</a>
                     <a href="#" class="Bt">inventario</a>
                     <a href="#" class="Bt">Contactenos</a>
                 </nav>
