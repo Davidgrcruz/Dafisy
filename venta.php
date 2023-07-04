@@ -125,12 +125,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <tr>
                         <td>
                             <button type="submit" class="Sti">registrar</button>
+                            <div class="consulta-button">
+        <a href="PAventa.php" class="Mi">Consultar ventas</a>
+    </div>
                         </td>
                     </tr>
+                    
 
                 </table>
 
             </form>
+           
         </main>
     </body>
 

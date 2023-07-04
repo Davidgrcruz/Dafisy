@@ -26,6 +26,9 @@ if (!empty($codigoCompra)) {
     <title>DAFISY</title>
     <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineIcons.css">
+    <script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
 </head>
 
 <body>
@@ -64,7 +67,7 @@ if (!empty($codigoCompra)) {
      
         
 
-        <table class="Ti">
+        <table class="Ti" id="tabla">
             <tr>
                 <th><label for="Cod">Codigo de compra</label></th>
                 <th><label for="Com">Valor de compra</label></th>
@@ -86,9 +89,14 @@ if (!empty($codigoCompra)) {
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='6'>No se encontraron resultados.</td></tr>";
+                echo "<tr><td colspan='6'>No se encontraron resultados.</td></tr> ";
             }
             ?>
+            
+             <td colspan="3">
+    <button id="btnExportar" class="Sti">
+                <i class="fas fa-file-excel"></i> Generar Excel
+            </button></td>
         </table>
 
         <?php
@@ -100,7 +108,23 @@ if (!empty($codigoCompra)) {
     </main>
 
     <footer>
-        <!-- ... Resto del código ... -->
+    
+            <script>
+    const $btnExportar = document.querySelector("#btnExportar"),
+        $tabla = document.querySelector("#tabla");
+
+    $btnExportar.addEventListener("click", function() {
+        let tableExport = new TableExport($tabla, {
+            exportButtons: false, // No queremos botones
+            filename: "Reporte", //Nombre del archivo de Excel
+            sheetname: "Ventas", //Título de la hoja
+        });
+        let datos = tableExport.getExportData();
+        let preferenciasDocumento = datos.tabla.xlsx;
+        tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+    });
+</script>
+
     </footer>
 </body>
 

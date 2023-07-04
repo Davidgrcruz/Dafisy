@@ -46,9 +46,9 @@ $Direc = $_POST["Dir"];
 $Pass = $_POST["Pass"];
 $tel = $_POST["Tel"];
 $fec = $_POST["Fec"];
-$cargo = $_POST["rol"];
 
-$sql = "INSERT INTO SH (Nombre, Apellido, ID, Email, Dir, Pass, Tel, Fec,rol) VALUES ('$Nombre','$Apell','$No_id', '$Email', '$Direc', '$Pass', '$tel', '$fec','$cargo')";
+
+$sql = "INSERT INTO SH (Nombre, Apellido, ID, Email, Dir, Pass, Tel, Fec) VALUES ('$Nombre','$Apell','$No_id', '$Email', '$Direc', '$Pass', '$tel', '$fec')";
 
 if ($conn->query($sql)) {
     echo "Registro exitoso";
