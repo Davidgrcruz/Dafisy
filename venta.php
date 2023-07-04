@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href="PagP.html" class="Bt">inicio</a>
                     <a href="ventas" class="Bt">ventas</a>
                     <a href="Inventario.php" class="Bt">inventario</a>
-                    <a href="#" class="Bt">Contactenos</a>
+                    <a href="Clientes.php" class="Bt">Clientes</a>
                 </nav>
             </th>
         </table>
