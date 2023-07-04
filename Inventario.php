@@ -4,6 +4,7 @@ include_once "htmlcon.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["agregar"])) {
         $Nombre = $_POST["Nombre_producto"];
+        $Imagen = $_FILES["Imagen"]["name"];
         $Ctec = $_POST["C_tecnicas"];
         $No_id = $_POST["ID_producto"];
         $marca = $_POST["marca"];
@@ -12,16 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $estado = $_POST["estado_P"];
         $stock = $_POST["stock"];
 
-        $sql = "INSERT INTO producto (Nombre_producto, C_tecnicas, ID_producto, marca, categoria, Precio, estado_P, stock)
-                VALUES ('$Nombre', '$Ctec', '$No_id', '$marca', '$Cat', '$Precio', '$estado', '$stock')";
+        $sql = "INSERT INTO producto (Nombre_producto, Imagen, C_tecnicas, ID_producto, marca, categoria, Precio, estado_P, stock)
+                VALUES ('$Nombre', '$Imagen', '$Ctec', '$No_id', '$marca', '$Cat', '$Precio', '$estado', '$stock')";
 
         if ($conn->query($sql)) {
+
+            move_uploaded_file($_FILES["Imagen"]["tmp_name"], "img/" . basename($_FILES["Imagen"]["name"]));
+
             echo "Producto agregado exitosamente";
         } else {
             echo "Error al agregar el producto: " . $conn->error;
         }
     } else {
         $Nombre = $_POST["Nombre_producto"];
+        $Imagen = $_FILES["Imagen"]["name"];
         $Ctec = $_POST["C_tecnicas"];
         $No_id = $_POST["ID_producto"];
         $marca = $_POST["marca"];
@@ -35,6 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $updates = [];
         if (!empty($Nombre)) {
             $updates[] = "Nombre_producto = '$Nombre'";
+        }
+
+        if (!empty($Imagen)) {
+            $updates[] = "Imagen = '$Imagen'";
         }
 
         if (!empty($Ctec)) {
@@ -72,8 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <table class="Ti">
             <th>
                 <img src="img/Santi.png" class="avatar" style="width: 90px; height: 100px;">
+                
             </th>
             <th>
                 <h1>DAFISY</h1>
@@ -97,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <th>
                 <nav class="Mi">
                     <a href="PagP.html" class="Bt">inicio</a>
-                    <a href="ventas.html" class="Bt">ventas</a>
+                    <a href="venta.php" class="Bt">ventas</a>
                     <a href="#" class="Bt">inventario</a>
                     <a href="#" class="Bt">Contactenos</a>
                 </nav>
@@ -108,48 +116,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main>
         <table class="Ti">
-            <tr>
-                <th>Nombre</th>
-                <th>Caracteristicas</th>
-                <th>ID producto</th>
-                <th>marca</th>
-                <th>categoria</th>
-                <th>Precio de unidad</th>
-                <th>estado</th>
-                <th>Stock</th>
-            </tr>
+            
+        <tr> 
+    <th>Nombre</th>
+    <th>Imagen</th>
+    <th>Características</th>
+    <th>ID producto</th>
+    <th>Marca</th>
+    <th>Categoría</th>
+    <th>Precio de unidad</th>
+    <th>Estado</th>
+    <th>Stock</th>
+</tr>
 
-            <?php
-            $sql = "SELECT * FROM producto";
+<!-- ... -->
 
-            if ($rta = $conn->query($sql)) {
-                while ($row = $rta->fetch_assoc()) {
-                    $Nombre = $row["Nombre_producto"];
-                    $Ctec = $row["C_tecnicas"];
-                    $No_id = $row["ID_producto"];
-                    $marca = $row["marca"];
-                    $Cat = $row["categoria"];
-                    $Precio = $row["Precio"];
-                    $estado = $row["estado_P"];
-                    $stock = $row["stock"];
+<?php
+$sql = "SELECT * FROM producto";
 
+if ($rta = $conn->query($sql)) {
+    while ($row = $rta->fetch_assoc()) {
+        $Nombre = $row["Nombre_producto"];
+        $Imagen = $row["Imagen"];
+        $Ctec = $row["C_tecnicas"];
+        $No_id = $row["ID_producto"];
+        $marca = $row["marca"];
+        $Cat = $row["categoria"];
+        $Precio = $row["Precio"];
+        $estado = $row["estado_P"];
+        $stock = $row["stock"];
 
-                    echo "
-                    <tr>
-                        <td>$Nombre</td>
-                        <td>$Ctec</td>
-                        <td>$No_id</td>
-                        <td>$marca</td>
-                        <td>$Cat</td>
-                        <td>$Precio</td>
-                        <td>$estado</td>
-                        <td>$stock</td>
-                    </tr>";
-                }
+        echo "
+        <tr>
+            <td>$Nombre</td>
+            <td><img src='img/$Imagen'alt='Imagen del producto' style='width: 100px; height: 100px;'></td>
+            <td>$Ctec</td>
+            <td>$No_id</td>
+            <td>$marca</td>
+            <td>$Cat</td>
+            <td>$Precio</td>
+            <td>$estado</td>
+            <td>$stock</td>
+        </tr>";
+    }
 
-                $rta->free();
-            }
-            ?>
+    $rta->free();
+}
+?>
+
         </table>
 
         <br>
@@ -157,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <table class="Formulario">
             <tr>
                 <td colspan="4">
-                    <form action="Inventario.php" method="post">
+                <form action="Inventario.php" method="post" enctype="multipart/form-data">
                         <label for="Nombre_P">Nombre producto:</label>
                         <input type="text" name="Nombre_producto" id="Nombre_Producto">
                         <br>
@@ -187,6 +201,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <br>
                         <button class="Sti" type="submit">Actualizar</button>
                         <button class="Sti" type="submit" name="agregar">Agregar</button>
+                        <!-- Resto del código del formulario -->
+                        <label for="Imagen">Imagen producto:</label>
+                        <input type="file" name="Imagen" id="Imagen"><br>
+
+<!-- Resto del código del formulario -->
+
                     </form>
                 </td>
             </tr>
